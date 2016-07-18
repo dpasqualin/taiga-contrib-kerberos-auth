@@ -24,13 +24,13 @@ setup(
         'versiontools >= 1.8',
     ],
     classifiers = [
-        "Programming Language :: Python",
+        'Programming Language :: Python :: 2',
+        "Programming Language :: Python :: 2.7",
         'Development Status :: 4 - Beta',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: GNU Affero General Public License v3',
         'Operating System :: OS Independent',
-        'Programming Language :: Python',
         'Topic :: Internet :: WWW/HTTP',
     ]
 )
