@@ -12,7 +12,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from kerberos import checkPassword
+import kerberos
 
 from django.conf import settings
 from django.core.validators import EmailValidator
@@ -35,24 +35,26 @@ def login(email, password):
     try:
         validate_email(email)
     except ValidationError as err:
-        errmsg, _ = err
+        errmsg, _ = err.args
         raise KERBEROSLoginError({"error_message": errmsg})
 
-    username, domain = email.split('@')[1]
+    username, domain = email.split('@')
 
     if domain not in allowed_domains:
         errmsg = "Invalid e-mail: domain not allowed"
         raise KERBEROSLoginError({"error_message": errmsg})
 
     try:
-        checkPassword(email, password, '', REALM)
+        kerberos.checkPassword(email, password, '', REALM)
     except kerberos.BasicAuthError as err:
-        errmsg, _ = err
+        errmsg, _ = err.args
         if errmsg == "Cannot contact any KDC for requested realm":
             errmsg = "Error connecting to KERBEROS server"
             raise KERBEROSLoginError({"error_message": errmsg})
         elif errmsg == "Decrypt integrity check failed":
             errmsg = "KERBEROS account or password incorrect"
+            raise KERBEROSLoginError({"error_message": errmsg})
+	else
             raise KERBEROSLoginError({"error_message": errmsg})
     except Exception:
         errmsg = "KERBEROS authentication failed"

@@ -49,7 +49,7 @@ def kerberos_register(username, email, full_name):
 
 
 def kerberos_login_func(request):
-    username = request.DATA.get('username', None)
+    email = request.DATA.get('username', None)
     password = request.DATA.get('password', None)
 
     email, username = connector.login(email=email, password=password)
