@@ -8,18 +8,24 @@ Installation
 
 ### Taiga Back
 
-In your Taiga back python virtualenv install the pip package
+In your Taiga back, first install `libkrb5-dev` with the following command:
+
+```bash
+  sudo apt-get install libkrb5-dev
+```
+
+Then, in the python virtualenv install the pip package:
 `taiga-contrib-kerberos-auth` with:
 
 ```bash
   pip install taiga-contrib-kerberos-auth
 ```
 
-Modify your settings/local.py and include it on `INSTALLED_APPS` and add your
+Finally, modify your `settings/local.py` and include it on `INSTALLED_APPS` and add your
 KERBEROS configuration:
 
 ```python
-  INSTALLED_APPS += ["taiga_contrib_kerberos_auth"]
+  INSTALLED_APPS += ['taiga_contrib_kerberos_auth']
 
   # kerberos realm
   KRB5_REALM = 'EXAMPLE.COM'
@@ -31,7 +37,7 @@ KERBEROS configuration:
 
 ### Taiga Front
 
-Change in your dist/js/conf.json the loginFormType setting to "kerberos":
+Change in your `dist/js/conf.json` the `loginFormType` setting to `"kerberos"`:
 
 ```json
 ...
