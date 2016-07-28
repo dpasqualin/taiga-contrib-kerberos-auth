@@ -18,7 +18,7 @@ setup(
     packages = find_packages(),
     install_requires=[
         'django >= 1.7',
-		'kerberos >= 1.2.4'
+        'kerberos >= 1.2.5'
     ],
     setup_requires = [
         'versiontools >= 1.8',
@@ -26,6 +26,8 @@ setup(
     classifiers = [
         'Programming Language :: Python :: 2',
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
         'Development Status :: 4 - Beta',
         'Framework :: Django',
         'Intended Audience :: Developers',
