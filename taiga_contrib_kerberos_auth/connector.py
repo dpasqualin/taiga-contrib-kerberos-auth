@@ -54,7 +54,7 @@ def login(email, password):
         elif errmsg == "Decrypt integrity check failed":
             errmsg = "KERBEROS account or password incorrect"
             raise KERBEROSLoginError({"error_message": errmsg})
-	else
+        else:
             raise KERBEROSLoginError({"error_message": errmsg})
     except Exception:
         errmsg = "KERBEROS authentication failed"
