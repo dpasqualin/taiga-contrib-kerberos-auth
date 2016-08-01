@@ -45,7 +45,7 @@ def login(email, password):
         raise KERBEROSLoginError({"error_message": errmsg})
 
     try:
-        kerberos.checkPassword(email, password, '', REALM)
+        kerberos.checkPassword(username, password, '', REALM)
     except kerberos.BasicAuthError as err:
         errmsg, _ = err.args
         if errmsg == "Cannot contact any KDC for requested realm":
