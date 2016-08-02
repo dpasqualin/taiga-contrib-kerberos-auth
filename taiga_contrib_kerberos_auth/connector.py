@@ -36,8 +36,7 @@ def login(email, password):
     try:
         validate_email(email)
     except ValidationError as err:
-        errmsg, _ = err.args
-        raise KERBEROSLoginError({"error_message": errmsg})
+        raise KERBEROSLoginError({"error_message": str(err)})
 
     username, domain = email.split('@')
 
