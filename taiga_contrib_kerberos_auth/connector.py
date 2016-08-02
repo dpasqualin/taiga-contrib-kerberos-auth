@@ -33,12 +33,18 @@ def login(email, password):
 
     validate_email = EmailValidator(whitelist=allowed_domains)
 
-    try:
-        validate_email(email)
-    except ValidationError as err:
-        raise KERBEROSLoginError({"error_message": str(err)})
+    # user is allowed to type just the username. In this case, the REALM
+    # will be appended as the domain to form a complete e-mail address
+    if '@' in email:
+        try:
+            validate_email(email)
+        except ValidationError as err:
+            raise KERBEROSLoginError({"error_message": str(err)})
 
-    username, domain = email.split('@')
+        username, domain = email.split('@')
+    else:
+        username, domain = email, REALM
+        email = username + '@' + domain
 
     if domain not in allowed_domains:
         errmsg = "Invalid e-mail: domain not allowed"
