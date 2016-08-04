@@ -1,6 +1,8 @@
 Taiga contrib kerberos auth
 =======================
 
+** WARNING: THIS PLUGIN IS NOT PRODUCTION READY. HOWEVER, IT SHOULD BE IN A WEEK =P **
+
 The Taiga plugin for kerberos authentication.
 
 Installation
