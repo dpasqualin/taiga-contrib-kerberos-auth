@@ -13,10 +13,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import transaction as tx
+from django.db import IntegrityError
 from django.apps import apps
 
 from taiga.auth.services import send_register_email
 from taiga.base.utils.slug import slugify_uniquely
+from taiga.base import exceptions as exc
 from taiga.auth.services import make_auth_response_data
 from taiga.auth.signals import user_registered as user_registered_signal
 
@@ -46,6 +48,8 @@ def kerberos_register(username, email, full_name):
                                          full_name=full_name)
         send_register_email(user)
         user_registered_signal.send(sender=user.__class__, user=user)
+    except IntegrityError:
+        raise exc.IntegrityError("This username/email already exists.")
 
     return user
 
