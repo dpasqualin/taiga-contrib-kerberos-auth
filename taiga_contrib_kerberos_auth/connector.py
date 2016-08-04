@@ -26,6 +26,7 @@ class KERBEROSLoginError(ConnectorBaseException):
 
 REALM = getattr(settings, "KRB5_REALM", "")
 ALLOWED_DOMAINS = getattr(settings, "KRB5_DOMAINS", "")
+DEFAULT_DOMAIN = getattr(settings, "KRB5_DEFAULT_DOMAIN", REALM)
 
 def login(email, password):
 
@@ -43,7 +44,7 @@ def login(email, password):
 
         username, domain = email.split('@')
     else:
-        username, domain = email, REALM
+        username, domain = email, DEFAULT_DOMAIN
         email = username + '@' + domain
 
     if domain not in allowed_domains:

@@ -35,6 +35,12 @@ KERBEROS configuration:
   # Allow users from any of these domains to connect to KRB5_REALM
   # If empty, only e-mails such as user@EXAMPLE.COM will be allowed
   KRB5_DOMAINS = ['example.com']
+
+  # When the user provide only username, assume this domain.
+  # This is useful when REALM is not a valid e-mail. Leave blank to use
+  # KRB5_REALM as the default domain
+  KRB5_DEFAULT_DOMAIN = ""
+
 ```
 
 ### Taiga Front
