@@ -1,3 +1,8 @@
+**Deprecation Warning**
+
+This repository is not maintained anymore.
+
+
 Taiga contrib kerberos auth
 =======================
 
